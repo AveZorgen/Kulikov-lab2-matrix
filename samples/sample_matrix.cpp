@@ -26,5 +26,14 @@ void main()
   cout << "Matrix a = " << endl << a << endl;
   cout << "Matrix b = " << endl << b << endl;
   cout << "Matrix c = a + b" << endl << c << endl;
+  TDynamicVector<int> v(5), f(5);
+  for (int i = 0; i < 5; i++) {
+      v[i] = i;
+      f[i] = -i;
+  }
+  cout << v << endl;
+  cout << a * v << endl;
+  cout << a * b << endl;
+  cout << a * 100 - b << endl;
 }
 //---------------------------------------------------------------------------

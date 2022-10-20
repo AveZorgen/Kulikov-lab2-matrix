@@ -24,14 +24,23 @@ TEST(TDynamicVector, can_create_copied_vector)
   ASSERT_NO_THROW(TDynamicVector<int> v1(v));
 }
 
-TEST(TDynamicVector, copied_vector_is_equal_to_source_one)
-{
-  ADD_FAILURE();
-}
-
 TEST(TDynamicVector, copied_vector_has_its_own_memory)
 {
-  ADD_FAILURE();
+	TDynamicVector<int> v2(3);
+	{
+		TDynamicVector<int> v1(10);
+		v2 = v1;
+	}
+	EXPECT_NO_FATAL_FAILURE(v2[1] = 3);
+}
+
+TEST(TDynamicVector, copied_vector_is_equal_to_source_one)
+{
+	TDynamicVector<int> v1(10), v2(5);
+	for (size_t i = 0; i < v1.size(); i++)
+		v1[i] = i + 4;
+	v2 = v1;
+	EXPECT_EQ(v1, v2);
 }
 
 TEST(TDynamicVector, can_get_size)
@@ -51,22 +60,33 @@ TEST(TDynamicVector, can_get_size)
 
 TEST(TDynamicVector, throws_when_set_element_with_negative_index)
 {
-  ADD_FAILURE();
+	TDynamicVector<int> v(4);
+	EXPECT_ANY_THROW(v.at(-1) = 3);
 }
 
 TEST(TDynamicVector, throws_when_set_element_with_too_large_index)
 {
-  ADD_FAILURE();
+	TDynamicVector<int> v(4);
+	EXPECT_ANY_THROW(v.at(4) = 3);
 }
 
 TEST(TDynamicVector, can_assign_vector_to_itself)
 {
-  ADD_FAILURE();
+	TDynamicVector<int> v(4);
+	for (size_t i = 0; i < v.size(); i++)
+		v[i] = i + 4;
+	v = v;
+	EXPECT_NO_FATAL_FAILURE(v[1] = 3);
 }
 
 TEST(TDynamicVector, can_assign_vectors_of_equal_size)
 {
-  ADD_FAILURE();
+	TDynamicVector<int> v1(4), v2(4);
+	for (size_t i = 0; i < v1.size(); i++)
+		v1[i] = i + 4;
+	v2 = v1;
+	EXPECT_EQ(4, v2[0]);
+	EXPECT_EQ(7, v2[3]);
 }
 
 TEST(TDynamicVector, assign_operator_change_vector_size)

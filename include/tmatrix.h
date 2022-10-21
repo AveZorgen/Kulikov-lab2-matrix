@@ -200,10 +200,7 @@ public:
   // матрично-скалярные операции
   TDynamicMatrix<T> operator*(double val)
   {
-      TDynamicVector<TDynamicVector<T>> tmp(sz);
-      for (size_t i = 0; i < sz; i++)
-          tmp[i] = pMem[i] * val;
-      return tmp;
+      return TDynamicVector<TDynamicVector<T>>::operator*(val);
   }
 
   // матрично-векторные операции

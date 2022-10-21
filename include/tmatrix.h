@@ -106,14 +106,14 @@ public:
   }
 
   // скалярные операции
-  TDynamicVector operator+(T val)
+  TDynamicVector operator+(double val)
   {
       TDynamicVector tmp(sz);
       for (size_t i = 0; i < sz; i++)
           tmp.pMem[i] = pMem[i] + val;
       return tmp;
   }
-  TDynamicVector operator-(T val)
+  TDynamicVector operator-(double val)
   {
       return *this + val * (-1);
   }
@@ -198,7 +198,7 @@ public:
   //}
 
   // матрично-скалярные операции
-  TDynamicMatrix<T> operator*(const T& val)
+  TDynamicMatrix<T> operator*(double val)
   {
       TDynamicVector<TDynamicVector<T>> tmp(sz);
       for (size_t i = 0; i < sz; i++)

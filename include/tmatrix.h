@@ -106,17 +106,17 @@ public:
   }
 
   // скалярные операции
-  TDynamicVector operator+(double val)
-  {
-      TDynamicVector tmp(sz);
-      for (size_t i = 0; i < sz; i++)
-          tmp.pMem[i] = pMem[i] + val;
-      return tmp;
-  }
-  TDynamicVector operator-(double val)
-  {
-      return *this + val * (-1);
-  }
+  //TDynamicVector operator+(double val)
+  //{
+  //    TDynamicVector tmp(sz);
+  //    for (size_t i = 0; i < sz; i++)
+  //        tmp.pMem[i] = pMem[i] + val;
+  //    return tmp;
+  //}
+  //TDynamicVector operator-(double val)
+  //{
+  //    return *this + val * (-1);
+  //}
   TDynamicVector operator*(double val)
   {
       TDynamicVector tmp(sz);

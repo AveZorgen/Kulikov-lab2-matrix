@@ -102,7 +102,7 @@ public:
   }
   bool operator!=(const TDynamicVector& v) const noexcept
   {
-      return !(*this == v);
+      return !operator==(v);
   }
 
   // скалярные операции
@@ -115,7 +115,7 @@ public:
   //}
   //TDynamicVector operator-(double val)
   //{
-  //    return *this + val * (-1);
+  //    return operator+(-val);
   //}
   TDynamicVector operator*(double val)
   {
@@ -137,7 +137,7 @@ public:
 
   TDynamicVector operator-(const TDynamicVector& v)
   {
-      return *this + TDynamicVector(v) * (-1);
+      return operator+(TDynamicVector(v) * (-1));
   }
   T operator*(const TDynamicVector& v)
   {

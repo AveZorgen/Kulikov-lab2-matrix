@@ -106,18 +106,18 @@ public:
   }
 
   // скалярные операции
-  //TDynamicVector operator+(double val)
-  //{
-  //    TDynamicVector tmp(sz);
-  //    for (size_t i = 0; i < sz; i++)
-  //        tmp.pMem[i] = pMem[i] + val;
-  //    return tmp;
-  //}
-  //TDynamicVector operator-(double val)
-  //{
-  //    return operator+(-val);
-  //}
-  TDynamicVector operator*(double val)
+  TDynamicVector operator+(T val)
+  {
+      TDynamicVector tmp(sz);
+      for (size_t i = 0; i < sz; i++)
+          tmp.pMem[i] = pMem[i] + val;
+      return tmp;
+  }
+  TDynamicVector operator-(T val)
+  {
+      return operator+(-val);
+  }
+  TDynamicVector operator*(T val)
   {
       TDynamicVector tmp(sz);
       for (size_t i = 0; i < sz; i++)
@@ -198,7 +198,7 @@ public:
   //}
 
   // матрично-скалярные операции
-  TDynamicMatrix<T> operator*(double val)
+  TDynamicMatrix<T> operator*(const T& val)
   {
       return TDynamicVector<TDynamicVector<T>>::operator*(val);
   }
@@ -214,13 +214,13 @@ public:
   }
 
   // матрично-матричные операции
-  //TDynamicMatrix operator+(const TDynamicMatrix& m) //возможно стоит заменить конструктором
+  //TDynamicMatrix operator+(const TDynamicMatrix& m) //возможно стоит заменить конструктором (удалить)
   //{
   //}
-  //TDynamicMatrix operator-(const TDynamicMatrix& m) //возможно стоит заменить конструктором
+  //TDynamicMatrix operator-(const TDynamicMatrix& m) //возможно стоит заменить конструктором (удалить)
   //{
   //}
-  TDynamicMatrix operator*(const TDynamicMatrix& m) //возможно стоит заменить конструктором
+  TDynamicMatrix operator*(const TDynamicMatrix& m)
   {
       if (sz != m.sz) throw length_error("cant multiply matrixs with not equal size");
       TDynamicMatrix<T> res(sz);
@@ -236,7 +236,7 @@ public:
   }
 
   //// ввод/вывод
-  //friend istream& operator>>(istream& istr, TDynamicMatrix& v) //возможно стоит заменить конструктором.. вводим с клавиатуры, нажимаем вектор
+  //friend istream& operator>>(istream& istr, TDynamicMatrix& v) //возможно стоит заменить конструктором (удалить)
   //{
   //}
   //friend ostream& operator<<(ostream& ostr, const TDynamicMatrix& v) //возможно стоит заменить конструктором (удалить)

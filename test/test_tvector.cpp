@@ -130,15 +130,29 @@ TEST(TDynamicVector, vectors_with_different_size_are_not_equal)
 	EXPECT_EQ(true, v1 != v2);
 }
 
-//TEST(TDynamicVector, can_add_scalar_to_vector)
-//{
-//  ADD_FAILURE();
-//}
+TEST(TDynamicVector, can_add_scalar_to_vector)
+{
+	TDynamicVector<int>v1(3);
+	for (int i = 0; i < 3; i++) {
+		v1[i] = i;
+	}
+	TDynamicVector<int>v2 = v1 + 5;
+	for (int i = 0; i < 3; i++) {
+		EXPECT_EQ(v1[i] + 5, v2[i]);
+	}
+}
 
-//TEST(TDynamicVector, can_subtract_scalar_from_vector)
-//{
-//  ADD_FAILURE();
-//}
+TEST(TDynamicVector, can_subtract_scalar_from_vector)
+{
+	TDynamicVector<int>v1(3);
+	for (int i = 0; i < 3; i++) {
+		v1[i] = i;
+	}
+	TDynamicVector<int>v2 = v1 - 5;
+	for (int i = 0; i < 3; i++) {
+		EXPECT_EQ(v1[i] - 5, v2[i]);
+	}
+}
 
 TEST(TDynamicVector, can_multiply_scalar_by_vector)
 {

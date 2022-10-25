@@ -33,6 +33,8 @@ public:
   }
   TDynamicVector(T* arr, size_t s) : sz(s)
   {
+    if (sz > MAX_VECTOR_SIZE)
+        throw out_of_range("Can't create too large vector");
     assert(arr != nullptr && "TDynamicVector ctor requires non-nullptr arg");
     pMem = new T[sz];
     std::copy(arr, arr + sz, pMem);
@@ -200,7 +202,10 @@ public:
   // матрично-скалярные операции
   TDynamicMatrix<T> operator*(const T& val)
   {
-      return TDynamicVector<TDynamicVector<T>>::operator*(val);
+      TDynamicMatrix<T> res(sz);
+      for (size_t i = 0; i < sz; i++)
+          res[i] = pMem[i] * val;
+      return res;
   }
 
   // матрично-векторные операции
@@ -214,12 +219,13 @@ public:
   }
 
   // матрично-матричные операции
-  //TDynamicMatrix operator+(const TDynamicMatrix& m) //возможно стоит заменить конструктором (удалить)
+  //TDynamicMatrix operator+(const TDynamicMatrix& m)
   //{
   //}
-  //TDynamicMatrix operator-(const TDynamicMatrix& m) //возможно стоит заменить конструктором (удалить)
-  //{
-  //}
+  TDynamicMatrix operator-(const TDynamicMatrix& m)
+  {
+      return TDynamicVector<TDynamicVector<T>>::operator+(TDynamicMatrix(m) * (-1));
+  }
   TDynamicMatrix operator*(const TDynamicMatrix& m)
   {
       if (sz != m.sz) throw length_error("cant multiply matrixs with not equal size");
@@ -236,10 +242,10 @@ public:
   }
 
   //// ввод/вывод
-  //friend istream& operator>>(istream& istr, TDynamicMatrix& v) //возможно стоит заменить конструктором (удалить)
+  //friend istream& operator>>(istream& istr, TDynamicMatrix& v)
   //{
   //}
-  //friend ostream& operator<<(ostream& ostr, const TDynamicMatrix& v) //возможно стоит заменить конструктором (удалить)
+  //friend ostream& operator<<(ostream& ostr, const TDynamicMatrix& v)
   //{
   //}
 };
